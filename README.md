@@ -6,17 +6,17 @@ Architectures](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.301.614
 "Centrality metrics, such as betweenness and closeness, quantify how central a node is in a network. They have been used successfully to carry analyses for various purposes such as structural analysis of knowledge networks, power grid contingency analysis, quantifying importance in social networks, analysis of covert networks and decision/action networks, and even for finding the best store locations in cities." 
 
 ## Project structure
-- `src/main.cu` contains main function
-- `include/graph_pruned.h` contains implementation of `struct Graph` (storing Graph on CPU, pruning, and decomposition into CC), `struct ConnectedComponent` (for building and storing in CPU format, as well as GPU Stride-CSR format), and `struct BrandesData` (Stride-CSR format)
-- `include/kernel_runner_pruned.h` contains implementation of `cuda_kernels`, `KernelRunnerMultiCCPruned` (struct that orchestrates algorithm), `BrandesDataDevice` (Stride-CSR format)
-- `include/common.h` common definitions
-- `include/utils.h`
-- `include/utils_cuda.cuh` cuda specific utils
-- `archive/` contains other implementation in a raw stage (lot's of debug/commented out/TODO code). I attach them as a proof of concept.
+- [src/main.cu](src/main.cu) contains main function
+- [include/graph_pruned.h](include/graph_pruned.h) contains implementation of `struct Graph` (storing Graph on CPU, pruning, and decomposition into CC), `struct ConnectedComponent` (for building and storing in CPU format, as well as GPU Stride-CSR format), and `struct BrandesData` (Stride-CSR format)
+- [include/kernel_runner_pruned.h](include/kernel_runner_pruned.h) contains implementation of `cuda_kernels`, `KernelRunnerMultiCCPruned` (struct that orchestrates algorithm), `BrandesDataDevice` (Stride-CSR format)
+- [include/common.h](include/common.h) common definitions
+- [include/utils.h](include/utils.h)
+- [include/utils_cuda.cuh](include/utils_cuda.cuh) cuda specific utils
 
 ## Introduction
 
-They idea is inspired by https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.301.6142&rep=rep1&type=pdf
+They solution is inspired by [Betweenness Centrality on GPUs and Heterogeneous
+Architectures](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.301.6142&rep=rep1&type=pdf)
 
 - I have implemented and fined-tuned Algorithm 4 from the paper.
 - On GPU graph is stored using Stride-CSR representation and virtual vertices are introduced, as in the paper.
